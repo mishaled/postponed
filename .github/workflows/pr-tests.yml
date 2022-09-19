@@ -1,0 +1,17 @@
+name: pr-tests
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+    blackbox-tests:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Test
+              working-directory: ./blackbox
+              run: yarn test:ci
+            - uses: actions/upload-artifact@v2
+              if: success() || failure()
+              with:
+                  name: test-results
+                  path: blackbox/test-reports/*.json

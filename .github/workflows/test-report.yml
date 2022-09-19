@@ -1,0 +1,21 @@
+name: 'Test Report'
+
+on:
+    workflow_run:
+        workflows: ['pr-tests'] # runs after CI workflow
+        types:
+            - completed
+
+jobs:
+    report:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Test Report
+              id: test_report
+              uses: dorny/test-reporter@v1
+              if: success() || failure()
+              with:
+                  artifact: test-results
+                  name: Mocha Tests
+                  path: '*.json'
+                  reporter: mocha-json
