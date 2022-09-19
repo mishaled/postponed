@@ -1,4 +1,4 @@
-# do-it-later
+# postponed
 
 An HTTP sidecar service, wrapping the great open source [bull library](https://github.com/OptimalBits/bull), for easy to use job scheduling.
 Bull is stable, well docummented library, that uses Redis as an underlying DB to manage jobs and queues.
