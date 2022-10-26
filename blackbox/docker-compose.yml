@@ -27,7 +27,9 @@ services:
         ports:
             - '3000'
         volumes:
-            - ./environment/test-secrets.json:/secrets/secrets.json
+            - type: bind
+              source: $PWD/environment/test-secrets.env
+              target: /service/.env
 
     redis:
         image: redis:6.2.5-alpine
