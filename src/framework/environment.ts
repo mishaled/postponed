@@ -1,8 +1,5 @@
-import * as fs from 'fs';
 import * as env from 'env-var';
 const {name, version} = require('../../package.json');
-
-const SECRETS_FILE_PATH = '/secrets/secrets.json';
 
 const getString = (key: string) => env.get(key).required().asString();
 
@@ -11,24 +8,6 @@ const getNumberWithDefault = (key: string, defaultValue: number) => env.get(key)
 const getStringWithDefault = (key: string, defaultValue: string) => env.get(key).asString() ?? defaultValue;
 
 const getBooleanWithDefault = (key: string, defaultValue: boolean) => env.get(key).asBool() ?? defaultValue;
-
-const getSecrets = (): Record<string, string> => {
-    try {
-        return JSON.parse(fs.readFileSync(SECRETS_FILE_PATH).toString());
-    } catch (error) {
-        return {};
-    }
-};
-
-const secrets = getSecrets();
-const getMandatorySecret = (key: string) => {
-    const value = getStringWithDefault(key, secrets[key]);
-    if (!value) {
-        throw new Error(`Secret ${key} is missing`);
-    }
-
-    return value;
-};
 
 export const NODE_ENV = getString('NODE_ENV');
 export const HTTP_PORT = getNumberWithDefault('HTTP_PORT', 3000);
@@ -49,7 +28,7 @@ export const MAX_CONCURRENCY = getNumberWithDefault('MAX_CONCURRENCY', 5);
 export const PROCESS_TIMEOUT_MS = getNumberWithDefault('PROCESS_TIMEOUT_MS', 10000);
 export const SHOULD_REDACT_JOB_DATA_IN_LOGS = getBooleanWithDefault('SHOULD_REDACT_JOB_DATA_IN_LOGS', true);
 
-export const REDIS_URL = getMandatorySecret('REDIS_URL');
+export const REDIS_URL = getString('REDIS_URL');
 
 export const IS_PROD = NODE_ENV === 'production';
 export const SERVICE_NAME = name;
