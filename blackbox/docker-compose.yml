@@ -26,10 +26,6 @@ services:
             - ./environment/scheduler.env
         ports:
             - '3000'
-        volumes:
-            - type: bind
-              source: $PWD/environment/test-secrets.env
-              target: /service/.env
 
     redis:
         image: redis:6.2.5-alpine
