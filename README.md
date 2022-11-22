@@ -1,3 +1,5 @@
+[![publish](https://github.com/mishaled/postponed/actions/workflows/publish.yml/badge.svg)](https://github.com/mishaled/postponed/actions/workflows/publish.yml)
+
 # postponed
 
 An HTTP sidecar service, wrapping the great open source [bull library](https://github.com/OptimalBits/bull), for easy to use job scheduling.
@@ -19,7 +21,7 @@ When the job's turn arrives, the sidecar sends a POST request to a predefined en
 
 ## How to install
 
-The docker image is hosted on docker hub and can be found here: https://hub.docker.com/r/soluto/postponed/
+The docker image is hosted on docker hub and can be found here: https://hub.docker.com/r/mishaled/postponed/
 
 An example kubernetes replication controller can be found in the examples directory.
 
