@@ -56,14 +56,14 @@ Exposes a simple api
 
 | Parameter                        | Description                                                                                       | Default                 | Mandatory | Secret |
 | -------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------- | --------- | ------ |
-| `REDIS_URL`                      | The redis cache url                                                                               |                         | true      | true   |
+| `REDIS_URL`                      | The redis cache url, if `IS_REDIS_TLS` is set to `true`, the  `REDIS_URL` must start with `rediss://`, otherwise with `redis://`                                                                                |                         | true      | true   |
 | `RETRY_DELAY_MS`                 | Time to wait before retrying to add to cache                                                      | `2000`                  | false     | false  |
 | `HTTP_PORT`                      | The port to use                                                                                   | `3000`                  | false     | false  |
 | `TARGET_BASE_PATH`               | Target base path                                                                                  | `http://localhost:3000` | false     | false  |
 | `TARGET_PROCESS_RELATIVE_PATH`   | Target message processor path                                                                     | `/executeJob`           | false     | false  |
 | `TARGET_IS_ALIVE_RELATIVE_PATH`  | Target is alive path                                                                              | `isAlive`               | false     | false  |
 | `JOBS_QUEUE_NAME`                | The table name in redis to store the items                                                        | `jobs-queue`            | false     | false  |
-| `IS_REDIS_TLS`                   | Should connect to redis with tls                                                                  | `false`                 | false     | false  |
+| `IS_REDIS_TLS`                   | Should connect to redis with tls                                                             | `false`                 | false     | false  |
 | `MAX_CONCURRENCY`                | The maximal number of concurrent processes                                                        | `5`                     | false     | false  |
 | `PROCESS_TIMEOUT_MS`             | Time after which the process times out in miliseconds                                             | `10000`                 | false     | false  |
 | `RETRY_ATTEMPTS`                 | The maximal number of retries                                                                     | `3`                     | false     | false  |
